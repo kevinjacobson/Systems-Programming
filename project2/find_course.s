@@ -16,7 +16,7 @@ find_course:
     movl    courses,   %ebx    // Set eax to the current node
 find_course_loop:
     cmpl    $0,         %ebx
-    jz      find_course_done    // Reached NULL :(
+    je      find_course_done    // Reached NULL :(
     pushl   8(%ebx)             // Push num2
     pushl   11(%ebx)            // Push D
     pushl   10(%ebx)            // Push C
@@ -25,7 +25,7 @@ find_course_loop:
     pushl   8(%ebp)             // Push A
     call    cmp_course
     cmpl    $0,         %eax    // Course found!
-    jz      find_course_done
+    je      find_course_done
     movl    (%ebx),     %ebx    // Load next course
     jmp     find_course_loop
 find_course_done:
